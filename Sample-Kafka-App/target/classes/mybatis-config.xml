@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- uncomment the below code, if we want to config mybatis using xml configuration -->
+<!-- other option is to define this configurations in java class - DBConfig.java in this code -->
+
+<!--<configuration>-->
+
+<!--    <typeAliases>-->
+<!--        <package name="com.kafka.demo.model" />-->
+<!--    </typeAliases>-->
+
+<!--    <environments default = "local">-->
+<!--        <environment id = "local_env">-->
+<!--            <transactionManager type = "JDBC"/>-->
+<!--            <dataSource type = "POOLED">-->
+<!--                <property name = "driver" value = "org.postgresql.Driver"/>-->
+<!--                <property name = "url" value = "jdbc:postgresql://0.0.0.0:5432/sampledb"/>-->
+<!--                <property name = "username" value = "postgres"/>-->
+<!--                <property name = "password" value = "postgres"/>-->
+<!--            </dataSource>-->
+<!--        </environment>-->
+<!--    </environments>-->
+
+<!--    <mappers>-->
+<!--        <mapper resource = "mappers/AppUserMapper.xml"/>-->
+<!--    </mappers>-->
+
+<!--</configuration>-->

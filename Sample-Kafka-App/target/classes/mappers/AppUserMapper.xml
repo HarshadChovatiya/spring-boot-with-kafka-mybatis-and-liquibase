@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mappers.AppUserMapper">
+
+    <resultMap id = "app_user_result" type = "AppUser">
+        <result property = "id" column = "id" />
+        <result property = "email" column = "email" />
+        <result property = "firstName" column = "first_name" />
+        <result property = "lastName" column = "last_name" />
+    </resultMap>
+
+    <insert id = "insert_app_user" parameterType = "AppUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into app_user (email, password, first_name, last_name) VALUES (#{email}, #{password}, #{firstName}, #{lastName});
+    </insert>
+    
+    <update id="update_app_user" parameterType="AppUser">
+        update app_user set first_name = #{firstName}, last_name = #{lastName} where id = #{id};
+    </update>
+    
+    <delete id="delete_app_user" parameterType="int">
+        delete from app_user where id = #{id};
+    </delete>
+    
+    <select id="get_app_user_by_id" parameterType="int" resultMap="app_user_result">
+        select id, first_name, last_name, email from app_user where id = #{id};
+    </select>
+
+    <select id="get_all_app_user" resultMap="app_user_result">
+        select id, first_name, last_name, email from app_user;
+    </select>
+
+</mapper>
