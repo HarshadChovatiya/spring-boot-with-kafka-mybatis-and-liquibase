@@ -2,6 +2,7 @@ package com.kafka.demo.service;
 
 import com.kafka.demo.dao.AppUserDao;
 import com.kafka.demo.model.dto.UpdateAppUser;
+import com.kafka.demo.model.dto.UserBlogPostDTO;
 import com.kafka.demo.model.dto.UserBlogsDTO;
 import com.kafka.demo.model.AppUser;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,9 @@ public class AppUserService {
 
     public List<UserBlogsDTO> getUsersAndBlogs() {
         return appUserDao.getUsersAndBlogs();
+    }
+
+    public List<UserBlogPostDTO> getUserBlogAndPosts() {
+        return appUserDao.getUserBlogAndPost();
     }
 }

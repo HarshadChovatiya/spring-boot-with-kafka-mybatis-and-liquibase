@@ -1,9 +1,15 @@
 package com.kafka.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class Blog {
 
     private Integer id;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String title;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private AppUser appUser;
 
     public Integer getId() {

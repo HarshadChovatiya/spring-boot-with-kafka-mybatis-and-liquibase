@@ -1,6 +1,7 @@
 package com.kafka.demo.rest;
 
 import com.kafka.demo.model.dto.UpdateAppUser;
+import com.kafka.demo.model.dto.UserBlogPostDTO;
 import com.kafka.demo.model.dto.UserBlogsDTO;
 import com.kafka.demo.model.AppUser;
 import com.kafka.demo.service.AppUserService;
@@ -48,6 +49,11 @@ public class AppUserController {
     @GetMapping(value = "/user-blog", produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<UserBlogsDTO> getUserBlogs() {
         return appUserService.getUsersAndBlogs();
+    }
+
+    @GetMapping(value = "/user-blog-post", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<UserBlogPostDTO> getUserBlogAndPost() {
+        return appUserService.getUserBlogAndPosts();
     }
 
 }

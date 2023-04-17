@@ -1,6 +1,7 @@
 package com.kafka.demo.dao;
 
 import com.kafka.demo.model.dto.UpdateAppUser;
+import com.kafka.demo.model.dto.UserBlogPostDTO;
 import com.kafka.demo.model.dto.UserBlogsDTO;
 import com.kafka.demo.model.AppUser;
 import org.apache.ibatis.session.SqlSession;
@@ -65,5 +66,9 @@ public class AppUserDao {
 
     public List<UserBlogsDTO> getUsersAndBlogs() {
         return sqlSession.selectList("mappers.AppUserMapper.get_user_and_blogs");
+    }
+
+    public List<UserBlogPostDTO> getUserBlogAndPost() {
+        return sqlSession.selectList("mappers.AppUserMapper.get_user_blog_and_post");
     }
 }

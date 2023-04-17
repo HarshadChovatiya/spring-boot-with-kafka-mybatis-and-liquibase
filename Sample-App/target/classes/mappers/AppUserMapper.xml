@@ -22,6 +22,25 @@
         <result property="title" column="title" />
     </resultMap>
 
+    <resultMap id="user_blog_post_result" type="UserBlogPostDTO">
+        <result property="id" column="user_id" />
+        <result property="firstName" column="first_name" />
+        <result property="lastName" column="last_name" />
+        <collection property="blogList" resultMap="blog_post_result" />
+    </resultMap>
+
+    <resultMap id="blog_post_result" type="BlogPostDTO">
+        <result property="blogId" column="blog_id" />
+        <result property="title" column="blog_title" />
+        <collection property="postList" resultMap="post_info_result" />
+    </resultMap>
+
+    <resultMap id="post_info_result" type="PostInfoDTO">
+        <result property="postId" column="post_id" />
+        <result property="title" column="post_title" />
+        <result property="content" column="post_content" />
+    </resultMap>
+
     <insert id = "insert_app_user" parameterType = "AppUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into app_user (email, password, first_name, last_name) VALUES (#{email}, #{password}, #{firstName}, #{lastName});
     </insert>
@@ -47,6 +66,15 @@
         au.last_name as last_name, b.id as blog_id, b.title as blog_title
         from app_user au left join blog b
         on au.id = b.user_id;
+    </select>
+    
+    <select id="get_user_blog_and_post" resultMap="user_blog_post_result">
+        select au.id as user_id, au.first_name as first_name,
+        au.last_name as last_name, b.id as blog_id, b.title as blog_title,
+        p.id as post_id, p.title as post_title, p.content as post_content
+        from app_user au
+        left join blog b on au.id = b.user_id
+        left join post p on b.id = p.blog_id
     </select>
 
 </mapper>
