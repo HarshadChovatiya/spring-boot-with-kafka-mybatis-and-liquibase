@@ -1,5 +1,6 @@
 package com.kafka.demo.dao;
 
+import com.kafka.demo.model.dto.FilterUserDTO;
 import com.kafka.demo.model.dto.UpdateAppUser;
 import com.kafka.demo.model.dto.UserBlogPostDTO;
 import com.kafka.demo.model.dto.UserBlogsDTO;
@@ -70,5 +71,9 @@ public class AppUserDao {
 
     public List<UserBlogPostDTO> getUserBlogAndPost() {
         return sqlSession.selectList("mappers.AppUserMapper.get_user_blog_and_post");
+    }
+
+    public List<AppUser> getFilteredAppUser(FilterUserDTO filterUserDTO) {
+        return sqlSession.selectList("mappers.AppUserMapper.get_filtered_app_user", filterUserDTO);
     }
 }

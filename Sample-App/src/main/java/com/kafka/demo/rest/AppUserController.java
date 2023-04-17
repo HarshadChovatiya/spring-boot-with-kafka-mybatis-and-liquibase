@@ -1,9 +1,10 @@
 package com.kafka.demo.rest;
 
+import com.kafka.demo.model.AppUser;
+import com.kafka.demo.model.dto.FilterUserDTO;
 import com.kafka.demo.model.dto.UpdateAppUser;
 import com.kafka.demo.model.dto.UserBlogPostDTO;
 import com.kafka.demo.model.dto.UserBlogsDTO;
-import com.kafka.demo.model.AppUser;
 import com.kafka.demo.service.AppUserService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -54,6 +55,11 @@ public class AppUserController {
     @GetMapping(value = "/user-blog-post", produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<UserBlogPostDTO> getUserBlogAndPost() {
         return appUserService.getUserBlogAndPosts();
+    }
+
+    @PostMapping(value = "/user-filtered", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<AppUser> getFilteredUsers(@RequestBody FilterUserDTO filterUserDTO) {
+        return appUserService.getFilteredAppUsers(filterUserDTO);
     }
 
 }

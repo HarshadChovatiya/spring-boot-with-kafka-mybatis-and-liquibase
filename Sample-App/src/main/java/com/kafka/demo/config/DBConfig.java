@@ -41,7 +41,6 @@ public class DBConfig {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setTypeAliasesPackage("com.kafka.demo.model");
-        sessionFactory.setMapperLocations();
         sessionFactory.setMapperLocations(applicationContext.getResources("classpath*:mappers/*.xml"));
         return sessionFactory.getObject();
     }

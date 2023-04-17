@@ -77,4 +77,19 @@
         left join post p on b.id = p.blog_id
     </select>
 
+    <select id="get_filtered_app_user" parameterType="FilterUserDTO" resultMap="app_user_result">
+        select id, first_name, last_name, email from app_user
+        <where>
+            <if test="firstName != null">
+                first_name = #{firstName}
+            </if>
+            <if test="lastName != null">
+                or last_name = #{lastName}
+            </if>
+            <if test="email != null">
+                or email = #{email}
+            </if>
+        </where>
+    </select>
+
 </mapper>

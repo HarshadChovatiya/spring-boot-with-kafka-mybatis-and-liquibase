@@ -1,6 +1,7 @@
 package com.kafka.demo.service;
 
 import com.kafka.demo.dao.AppUserDao;
+import com.kafka.demo.model.dto.FilterUserDTO;
 import com.kafka.demo.model.dto.UpdateAppUser;
 import com.kafka.demo.model.dto.UserBlogPostDTO;
 import com.kafka.demo.model.dto.UserBlogsDTO;
@@ -44,5 +45,9 @@ public class AppUserService {
 
     public List<UserBlogPostDTO> getUserBlogAndPosts() {
         return appUserDao.getUserBlogAndPost();
+    }
+
+    public List<AppUser> getFilteredAppUsers(FilterUserDTO filterUserDTO) {
+        return appUserDao.getFilteredAppUser(filterUserDTO);
     }
 }
