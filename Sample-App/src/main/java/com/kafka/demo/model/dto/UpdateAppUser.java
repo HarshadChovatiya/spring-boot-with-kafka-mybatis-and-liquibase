@@ -1,4 +1,4 @@
-package com.kafka.demo.dto;
+package com.kafka.demo.model.dto;
 
 public class UpdateAppUser {
 

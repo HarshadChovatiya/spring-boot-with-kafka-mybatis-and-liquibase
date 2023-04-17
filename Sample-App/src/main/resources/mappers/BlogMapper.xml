@@ -6,7 +6,7 @@
     <resultMap id = "blog_result" type = "Blog">
         <result property = "id" column = "id" />
         <result property = "title" column = "title" />
-        <association property="appUser" resultMap="blog_user_id_result" column="user_id" />
+        <association property="appUser" resultMap="blog_user_id_result" />
     </resultMap>
 
     <resultMap id="blog_user_id_result" type="AppUser">
@@ -16,5 +16,9 @@
     <select id="get_all_blog" resultMap="blog_result">
         select id, title, user_id from blog;
     </select>
+
+    <insert id="insert_blog" parameterType="Blog" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into blog (title, user_id) values (#{title}, #{appUser.id});
+    </insert>
 
 </mapper>

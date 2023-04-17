@@ -1,11 +1,11 @@
 package com.kafka.demo.service;
 
 import com.kafka.demo.dao.AppUserDao;
-import com.kafka.demo.dto.UpdateAppUser;
+import com.kafka.demo.model.dto.UpdateAppUser;
+import com.kafka.demo.model.dto.UserBlogsDTO;
 import com.kafka.demo.model.AppUser;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -21,9 +21,9 @@ public class AppUserService {
         return appUserDao.saveAppUser(appUser);
     }
 
-//    public AppUser updateAppUser(Integer id, UpdateAppUser updateAppUser) {
-//        return appUserDao.updateAppUser(id, updateAppUser);
-//    }
+    public AppUser updateAppUser(Integer id, UpdateAppUser updateAppUser) {
+        return appUserDao.updateAppUser(id, updateAppUser);
+    }
 
     public void deleteAppUser(Integer id) {
         appUserDao.deleteAppUser(id);
@@ -35,5 +35,9 @@ public class AppUserService {
 
     public List<AppUser> getAllAppUser() {
         return appUserDao.getAllAppUser();
+    }
+
+    public List<UserBlogsDTO> getUsersAndBlogs() {
+        return appUserDao.getUsersAndBlogs();
     }
 }

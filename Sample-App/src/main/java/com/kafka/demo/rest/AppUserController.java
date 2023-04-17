@@ -1,6 +1,7 @@
 package com.kafka.demo.rest;
 
-import com.kafka.demo.dto.UpdateAppUser;
+import com.kafka.demo.model.dto.UpdateAppUser;
+import com.kafka.demo.model.dto.UserBlogsDTO;
 import com.kafka.demo.model.AppUser;
 import com.kafka.demo.service.AppUserService;
 import org.springframework.http.MediaType;
@@ -23,10 +24,10 @@ public class AppUserController {
         return appUserService.createAppUser(appUser);
     }
 
-//    @PutMapping(value = "/app-user/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-//    public AppUser updateAppUser(@PathVariable("id") Integer id, @RequestBody UpdateAppUser updateAppUser) {
-//        return appUserService.updateAppUser(id, updateAppUser);
-//    }
+    @PutMapping(value = "/app-user/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public AppUser updateAppUser(@PathVariable("id") Integer id, @RequestBody UpdateAppUser updateAppUser) {
+        return appUserService.updateAppUser(id, updateAppUser);
+    }
 
     @DeleteMapping(value = "/app-user/{id}")
     public String deleteAppUser(@PathVariable("id") Integer id) {
@@ -44,5 +45,9 @@ public class AppUserController {
         return appUserService.getAllAppUser();
     }
 
+    @GetMapping(value = "/user-blog", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<UserBlogsDTO> getUserBlogs() {
+        return appUserService.getUsersAndBlogs();
+    }
 
 }

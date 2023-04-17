@@ -1,14 +1,13 @@
 package com.kafka.demo.dao;
 
-import com.kafka.demo.dto.UpdateAppUser;
+import com.kafka.demo.model.dto.UpdateAppUser;
+import com.kafka.demo.model.dto.UserBlogsDTO;
 import com.kafka.demo.model.AppUser;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.List;
 
 
@@ -43,13 +42,13 @@ public class AppUserDao {
         return appUser;
     }
 
-//    public AppUser updateAppUser(Integer id, UpdateAppUser updateAppUser) {
-//        AppUser appUser = new AppUser(id, updateAppUser.getFirstName(), updateAppUser.getLastName());
-//        sqlSession.update("mappers.AppUserMapper.update_app_user", appUser);
-//        LOGGER.info("user with id : {} update successfully", appUser.getId());
+    public AppUser updateAppUser(Integer id, UpdateAppUser updateAppUser) {
+        AppUser appUser = new AppUser(id, updateAppUser.getFirstName(), updateAppUser.getLastName());
+        sqlSession.update("mappers.AppUserMapper.update_app_user", appUser);
+        LOGGER.info("user with id : {} update successfully", appUser.getId());
 
-//        return sqlSession.selectOne("mappers.AppUserMapper.get_app_user_by_id", appUser.getId());
-//    }
+        return sqlSession.selectOne("mappers.AppUserMapper.get_app_user_by_id", appUser.getId());
+    }
 
     public void deleteAppUser(Integer id) {
         sqlSession.delete("mappers.AppUserMapper.delete_app_user_by_id", id);
@@ -64,5 +63,7 @@ public class AppUserDao {
         return sqlSession.selectList("mappers.AppUserMapper.get_all_app_user");
     }
 
-
+    public List<UserBlogsDTO> getUsersAndBlogs() {
+        return sqlSession.selectList("mappers.AppUserMapper.get_user_and_blogs");
+    }
 }

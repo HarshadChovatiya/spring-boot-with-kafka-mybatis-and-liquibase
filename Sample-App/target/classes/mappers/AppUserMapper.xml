@@ -10,6 +10,18 @@
         <result property = "lastName" column = "last_name" />
     </resultMap>
 
+    <resultMap id="user_blog_result" type="UserBlogsDTO">
+        <result property="id" column="user_id" />
+        <result property="firstName" column="first_name" />
+        <result property="lastName" column="last_name" />
+        <collection property="blogIdTitles" resultMap="blog_id_title_result" columnPrefix="blog_" />
+    </resultMap>
+
+    <resultMap id="blog_id_title_result" type="BlogIdTitle">
+        <id property="blogId" column="id" />
+        <result property="title" column="title" />
+    </resultMap>
+
     <insert id = "insert_app_user" parameterType = "AppUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into app_user (email, password, first_name, last_name) VALUES (#{email}, #{password}, #{firstName}, #{lastName});
     </insert>
@@ -28,6 +40,13 @@
 
     <select id="get_all_app_user" resultMap="app_user_result">
         select id, first_name, last_name, email from app_user;
+    </select>
+
+    <select id="get_user_and_blogs" resultMap="user_blog_result">
+        select au.id as user_id, au.first_name as first_name,
+        au.last_name as last_name, b.id as blog_id, b.title as blog_title
+        from app_user au left join blog b
+        on au.id = b.user_id;
     </select>
 
 </mapper>
