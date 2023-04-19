@@ -57,8 +57,11 @@ public class AppUserController {
         return appUserService.getUserBlogAndPosts();
     }
 
-    @PostMapping(value = "/user-filtered", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<AppUser> getFilteredUsers(@RequestBody FilterUserDTO filterUserDTO) {
+    /**
+     * localhost:8080/api/v1/user-filtered?firstName=Mike&LastName=Doe&email=email@gmail.com
+     */
+    @GetMapping(value = "/user-filtered", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<AppUser> getFilteredUsers(FilterUserDTO filterUserDTO) {
         return appUserService.getFilteredAppUsers(filterUserDTO);
     }
 
